@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waveform-Driven Geometric Pattern Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Waveform-Driven Geometric Pattern Generator</h1>
+            <p>Create unique geometric patterns using waveform parameters</p>
+        </header>
+        
+        <main>
+            <div class="app-container">
+                <div class="controls-panel">
+                    <div class="control-section">
+                        <h2>Geometric Controls</h2>
+                        <div class="control-group">
+                            <label for="sides">Number of Sides/Vertices:</label>
+                            <input type="range" id="sides" min="3" max="20" value="6" step="1">
+                            <span class="value-display" id="sides-value">6</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="radius">Radius/Size:</label>
+                            <input type="range" id="radius" min="50" max="200" value="150" step="1">
+                            <span class="value-display" id="radius-value">150</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="angle">Angle Increment:</label>
+                            <input type="range" id="angle" min="0" max="360" value="30" step="1">
+                            <span class="value-display" id="angle-value">30</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="rotation">Base Rotation:</label>
+                            <input type="range" id="rotation" min="0" max="360" value="0" step="1">
+                            <span class="value-display" id="rotation-value">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h2>Waveform Controls</h2>
+                        <div class="control-group">
+                            <label for="wave-type">Wave Type:</label>
+                            <select id="wave-type">
+                                <option value="sin">Sine</option>
+                                <option value="cos">Cosine</option>
+                                <option value="tan">Tangent</option>
+                                <option value="square">Square</option>
+                                <option value="sawtooth">Sawtooth</option>
+                                <option value="triangle">Triangle</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="frequency">Frequency:</label>
+                            <input type="range" id="frequency" min="0.1" max="5" value="1" step="0.1">
+                            <span class="value-display" id="frequency-value">1</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="amplitude">Amplitude:</label>
+                            <input type="range" id="amplitude" min="0" max="100" value="30" step="1">
+                            <span class="value-display" id="amplitude-value">30</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="phase">Phase Shift:</label>
+                            <input type="range" id="phase" min="0" max="6.28" value="0" step="0.1">
+                            <span class="value-display" id="phase-value">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h2>Secondary Wave</h2>
+                        <div class="control-group">
+                            <label for="enable-secondary">Enable Secondary Wave:</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="enable-secondary">
+                                <label for="enable-secondary" class="toggle-label"></label>
+                            </div>
+                        </div>
+                        <div class="secondary-controls" id="secondary-controls">
+                            <div class="control-group">
+                                <label for="secondary-wave-type">Wave Type:</label>
+                                <select id="secondary-wave-type">
+                                    <option value="sin">Sine</option>
+                                    <option value="cos">Cosine</option>
+                                    <option value="tan">Tangent</option>
+                                    <option value="square">Square</option>
+                                    <option value="sawtooth">Sawtooth</option>
+                                    <option value="triangle">Triangle</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="secondary-frequency">Frequency:</label>
+                                <input type="range" id="secondary-frequency" min="0.1" max="5" value="2" step="0.1">
+                                <span class="value-display" id="secondary-frequency-value">2</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="secondary-amplitude">Amplitude:</label>
+                                <input type="range" id="secondary-amplitude" min="0" max="100" value="15" step="1">
+                                <span class="value-display" id="secondary-amplitude-value">15</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="secondary-phase">Phase Shift:</label>
+                                <input type="range" id="secondary-phase" min="0" max="6.28" value="1.57" step="0.1">
+                                <span class="value-display" id="secondary-phase-value">1.57</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="wave-combination">Combination Method:</label>
+                                <select id="wave-combination">
+                                    <option value="add">Addition</option>
+                                    <option value="multiply">Multiplication</option>
+                                    <option value="max">Maximum</option>
+                                    <option value="min">Minimum</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h2>Color Controls</h2>
+                        <div class="control-group">
+                            <label for="stroke-color">Stroke Color:</label>
+                            <input type="color" id="stroke-color" value="#3498db">
+                        </div>
+                        <div class="control-group">
+                            <label for="fill-color">Fill Color:</label>
+                            <input type="color" id="fill-color" value="#ffffff">
+                        </div>
+                        <div class="control-group">
+                            <label for="fill-opacity">Fill Opacity:</label>
+                            <input type="range" id="fill-opacity" min="0" max="1" value="0.2" step="0.1">
+                            <span class="value-display" id="fill-opacity-value">0.2</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="line-width">Line Width:</label>
+                            <input type="range" id="line-width" min="1" max="10" value="2" step="1">
+                            <span class="value-display" id="line-width-value">2</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="color-mode">Color Mode:</label>
+                            <select id="color-mode">
+                                <option value="solid">Solid</option>
+                                <option value="gradient">Gradient</option>
+                                <option value="rainbow">Rainbow</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h2>Animation Controls</h2>
+                        <div class="control-group">
+                            <label for="animation-toggle">Animation:</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="animation-toggle">
+                                <label for="animation-toggle" class="toggle-label"></label>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="animation-speed">Animation Speed:</label>
+                            <input type="range" id="animation-speed" min="0.1" max="5" value="1" step="0.1" disabled>
+                            <span class="value-display" id="animation-speed-value">1</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="animation-target">Animate:</label>
+                            <select id="animation-target" disabled>
+                                <option value="phase">Phase</option>
+                                <option value="frequency">Frequency</option>
+                                <option value="amplitude">Amplitude</option>
+                                <option value="rotation">Rotation</option>
+                                <option value="multiple">Multiple Parameters</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3>Presets</h3>
+                        <div class="presets-container">
+                            <div class="preset-group">
+                                <button class="preset" data-preset="flower">Flower</button>
+                                <button class="preset" data-preset="star">Star</button>
+                                <button class="preset" data-preset="spiral">Spiral</button>
+                                <button class="preset" data-preset="wave">Wave</button>
+                                <button class="preset" data-preset="complex">Complex</button>
+                                <button class="preset" data-preset="galaxy">Galaxy</button>
+                                <button class="preset" data-preset="snowflake">Snowflake</button>
+                                <button class="preset" data-preset="vortex">Vortex</button>
+                                <button class="preset" data-preset="infinity">Infinity</button>
+                                <button class="preset" data-preset="rainbow">Rainbow</button>
+                            </div>
+                            <div class="user-presets"></div>
+                            <button id="save-preset-btn" class="action-btn">Save Current as Preset</button>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <h3>Export Options</h3>
+                        <div class="export-group">
+                            <button id="export-png" class="export-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                PNG
+                            </button>
+                            <button id="export-svg" class="export-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                SVG
+                            </button>
+                            <button id="export-video" class="export-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                </svg>
+                                Video
+                            </button>
+                        </div>
+                        
+                        <div id="video-export-settings" class="video-settings" style="display: none;">
+                            <h4>Video Settings</h4>
+                            <div class="slider-container">
+                                <label for="video-duration">
+                                    Duration: <span id="video-duration-value">5</span> seconds
+                                </label>
+                                <input type="range" id="video-duration" min="1" max="10" value="5" step="1">
+                            </div>
+                            
+                            <div class="slider-container">
+                                <label for="video-fps">
+                                    FPS: <span id="video-fps-value">30</span>
+                                    <span class="quality-indicator quality-medium" id="fps-quality-indicator" title="Medium quality"></span>
+                                </label>
+                                <input type="range" id="video-fps" min="15" max="60" value="30" step="1">
+                            </div>
+                            
+                            <div class="slider-container">
+                                <label for="video-quality">
+                                    Quality: <span id="video-quality-value">Medium</span>
+                                    <span class="quality-indicator quality-medium" id="quality-indicator"></span>
+                                </label>
+                                <input type="range" id="video-quality" min="1" max="3" value="2" step="1">
+                            </div>
+                            
+                            <p class="note">Note: Higher quality and FPS will take longer to generate</p>
+                            
+                            <button id="start-video-export" class="export-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                </svg>
+                                Generate Video
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3>About</h3>
+                        <div class="about-info">
+                            <p>Created by: Saqlain Abbas</p>
+                            <p>GitHub: <a href="https://github.com/Razee4315" target="_blank">Razee4315</a></p>
+                            <p>Contact: <a href="mailto:saqlainrazee@gmail.com">saqlainrazee@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <button id="export-btn">Export as PNG</button>
+                        <button id="save-preset-btn">Save Current Settings</button>
+                    </div>
+                </div>
+                
+                <div class="canvas-container">
+                    <canvas id="pattern-canvas"></canvas>
+                    <div class="formula-display">
+                        <h3>Formula Breakdown</h3>
+                        <p id="formula-text">r = baseRadius + amplitude * sin(frequency * θ + phase)</p>
+                        <p>Where θ is the angle and r is the resulting radius at that angle</p>
+                        <div id="advanced-formula" class="advanced-formula"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>By Saqlain Abbas (Razee4315)</p>
+        </footer>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Save Preset</h2>
+            <div class="form-group">
+                <label for="preset-name">Preset Name:</label>
+                <input type="text" id="preset-name" placeholder="My Awesome Pattern">
+            </div>
+            <button id="save-preset-confirm">Save</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
