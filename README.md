@@ -1,6 +1,5 @@
 # HarmoniForm - Waveform Pattern Generator
 
-![HarmoniForm Preview](preview.png)
 
 ## Overview
 HarmoniForm is an interactive web application that generates beautiful, customizable geometric patterns based on waveform mathematics. Create mesmerizing designs by adjusting various parameters and export them as images or videos.
